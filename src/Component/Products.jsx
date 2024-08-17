@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axiosPublic from "./AxiosPublic";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Products = ({ searchProductByName, filters }) => {
   const [products, setProducts] = useState([]);
