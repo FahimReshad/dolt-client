@@ -4,7 +4,6 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext);
-  console.log(user);
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef();
 

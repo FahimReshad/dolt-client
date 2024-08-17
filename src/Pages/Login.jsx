@@ -11,9 +11,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         signInUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
+        .then(() => {
             navigate('/')
         })
         .catch(error => console.error(error))
@@ -23,7 +21,6 @@ const Login = () => {
         googleSignIn()
         .then(result => {
             const user = result.user;
-            console.log(user);
             navigate('/')
         })
         .catch(error => console.error(error))
