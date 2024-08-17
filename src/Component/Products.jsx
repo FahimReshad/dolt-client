@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Products = ({ searchProductByName, filters }) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [sortOption, setSortOption] = useState("newest");
   const [pageNumber, setPageNumber] = useState(0);
   const [totalPages, setTotalPages] = useState(1); // Added state to track total pages
@@ -33,7 +34,10 @@ const Products = ({ searchProductByName, filters }) => {
         setProducts(res.data.products);
         setTotalPages(Math.ceil(res.data.totalCount / limit)); // Calculate total pages based on response
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setLoading(false);
+      })
   }, [searchProductByName, filters, sortOption, pageNumber]);
 
   return (
@@ -53,7 +57,9 @@ const Products = ({ searchProductByName, filters }) => {
           <option value="priceDesc">Price: High to Low</option>
         </select>
       </div>
-      {products.length > 0 ? (
+      {loading ? (
+        <div className="text-center text-white">Loading...</div>
+      ) : products.length > 0 ? (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
           {products.map((product) => (
             <div
