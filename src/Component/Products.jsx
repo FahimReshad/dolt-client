@@ -4,7 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Products = ({ searchProductByName, filters }) => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState("newest");
   const [pageNumber, setPageNumber] = useState(0);
   const [totalPages, setTotalPages] = useState(1); // Added state to track total pages
@@ -58,7 +58,7 @@ const Products = ({ searchProductByName, filters }) => {
         </select>
       </div>
       {loading ? (
-        <div className="text-center text-white">Loading...</div>
+        <div className="w-10 h-10 mx-auto animate-[spin_1s_linear_infinite] rounded-full border-4 border-r-transparent border-l-transparent border-sky-400"></div>
       ) : products.length > 0 ? (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
           {products.map((product) => (

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
@@ -29,9 +29,9 @@ const Navbar = () => {
   }, []);
   return (
     <nav className="flex items-center justify-between bg-[#262626] px-4 py-2 text-white">
-      <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
-        <img className="w-36 h-10" src="https://i.ibb.co/gSP7qyy/Logo-for-web.gif" alt="" />
-      </div>
+      <Link to='/'><div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
+        <img className="w-36 h-10" src="https://i.ibb.co/gSP7qyy/Logo-for-web.gif" alt="logo" />
+      </div></Link>
       <ul className="hidden items-center justify-between gap-10 md:flex">
   {user ? (
     <><li onClick={handleLogout} className="group flex cursor-pointer flex-col">
@@ -79,16 +79,28 @@ const Navbar = () => {
           <line x1="4" x2="20" y1="18" y2="18" />{" "}
         </svg>
         {dropDownState && (
-          <ul className=" z-10  gap-2  bg-[#393E46]  absolute right-0 top-11 flex w-[200px] flex-col  rounded-lg   text-base ">
-            <li onClick={handleLogout} className="cursor-pointer  px-6 py-2 text-white rounded-t-lg hover:bg-sky-600 ">
-              LogOut
-            </li>
-            <li className="cursor-pointer  px-6 py-2 text-white rounded-t-lg hover:bg-sky-600 ">
-              Login
-            </li>
-            <li className="cursor-pointer  px-6 py-2 text-white rounded-t-lg hover:bg-sky-600 ">
-              Register
-            </li>
+          <ul className="z-10  gap-2  bg-[#393E46]  absolute right-0 top-11 flex w-[200px] flex-col rounded-lg  text-base">
+             {user ? (
+    <><li onClick={handleLogout} className="group flex cursor-pointer flex-col ml-2">
+    LogOut
+    <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+  </li></>
+  ) : (
+    <>
+      <NavLink to="/login">
+        <li className="group flex cursor-pointer flex-col ml-2">
+          Login
+          <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+        </li>
+      </NavLink>
+      <NavLink to="/register">
+        <li className="group flex cursor-pointer flex-col ml-2">
+          Register
+          <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+        </li>
+      </NavLink>
+    </>
+  )}
           </ul>
         )}
       </div>
