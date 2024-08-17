@@ -37,7 +37,7 @@ const Products = ({ searchProductByName, filters }) => {
       .catch((error) => console.error(error))
       .finally(() => {
         setLoading(false);
-      })
+      });
   }, [searchProductByName, filters, sortOption, pageNumber]);
 
   return (

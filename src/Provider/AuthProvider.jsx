@@ -40,8 +40,8 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     });
     return () => {
-        return unSubscribe();
-    }
+      return unSubscribe();
+    };
   }, []);
 
   const authInfo = {
