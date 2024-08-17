@@ -28,10 +28,10 @@ const Navbar = () => {
           Login
           <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
         </li></NavLink>
-        <li className="group flex  cursor-pointer flex-col">
+        <NavLink to='register'><li className="group flex  cursor-pointer flex-col">
           Register
           <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-        </li>
+        </li></NavLink>
       </ul>
       <div
         ref={dropDownMenuRef}

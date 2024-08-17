@@ -1,23 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 
-const Login = () => {
-    const {signInUser, googleSignIn} = useContext(AuthContext)
-    const handleLogin = (e) => {
+const Register = () => {
+    const {createUser} = useContext(AuthContext)
+    const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        signInUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => console.error(error))
-    }
-
-    const handleGoogleSign = () => {
-        googleSignIn()
+        createUser(email, password)
         .then(result => {
             const user = result.user;
             console.log(user);
@@ -40,8 +31,8 @@ const Login = () => {
                 </div>
                 {/* form side  */}
                 <div className="flex w-full flex-col justify-center bg-white py-10 lg:w-[60%] dark:bg-zinc-900">
-                    <h2 className="pb-8 text-center text-3xl font-semibold tracking-tight text-blue-400">Sign In</h2>
-                    <form onSubmit={handleLogin} className="flex w-full flex-col items-center justify-center gap-4">
+                    <h2 className="pb-8 text-center text-3xl font-semibold tracking-tight text-blue-400">Please Registration</h2>
+                    <form onSubmit={handleRegister} className="flex w-full flex-col items-center justify-center gap-4">
                         <input
                             className="w-[80%] rounded-lg border border-blue-400 bg-transparent py-2 pl-4 text-zinc-600 focus:outline-none focus:ring-2 focus:ring-blue-300/50 md:w-[60%] dark:text-zinc-400"
                             type="email"
@@ -68,7 +59,7 @@ const Login = () => {
                         <hr className="flex-1 border-blue-400" />
                     </div>
                     {/* sign with google */}
-                    <button onClick={handleGoogleSign} className="group mx-auto flex h-[50px] w-fit items-center overflow-hidden rounded-full shadow-md outline-none ring-1 ring-blue-400">
+                    <button className="group mx-auto flex h-[50px] w-fit items-center overflow-hidden rounded-full shadow-md outline-none ring-1 ring-blue-400">
                         <div className="relative z-20 flex h-full items-center bg-blue-400 px-4 text-lg text-white duration-300 group-hover:bg-transparent group-hover:text-blue-400">
                             Signin with
                         </div>
@@ -82,4 +73,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
