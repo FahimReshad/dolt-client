@@ -96,7 +96,7 @@ const Products = ({ searchProductByName, filters }) => {
       ) : (
         <div className="text-black">No products found.</div>
       )}
-                             {/* pagination */}
+      {/* pagination */}
       <div className="flex justify-center items-center gap-5 bg-white p-2  rounded-md w-fit mx-auto select-none mt-6 ">
         {/* left arrow */}
         <div

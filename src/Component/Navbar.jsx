@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
@@ -23,10 +24,10 @@ const Navbar = () => {
         <h2>Logo</h2>
       </div>
       <ul className="hidden items-center justify-between gap-10 md:flex">
-        <li className="group flex  cursor-pointer flex-col">
+        <NavLink to='/login'><li className="group flex  cursor-pointer flex-col">
           Login
           <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-        </li>
+        </li></NavLink>
         <li className="group flex  cursor-pointer flex-col">
           Register
           <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
