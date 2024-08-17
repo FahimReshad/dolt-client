@@ -1,9 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext);
+  console.log(user);
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef();
+
+  const handleLogout = () => {
+    logOut()
+    .then(() => {})
+    .catch(error => console.error(error))
+  }
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -21,18 +30,32 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between bg-[#262626] px-4 py-2 text-white">
       <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
-        <h2>Logo</h2>
+        <img className="w-36 h-10" src="https://i.ibb.co/gSP7qyy/Logo-for-web.gif" alt="" />
       </div>
       <ul className="hidden items-center justify-between gap-10 md:flex">
-        <NavLink to='/login'><li className="group flex  cursor-pointer flex-col">
+  {user ? (
+    <><li onClick={handleLogout} className="group flex cursor-pointer flex-col">
+    LogOut
+    <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+  </li></>
+  ) : (
+    <>
+      <NavLink to="/login">
+        <li className="group flex cursor-pointer flex-col">
           Login
           <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-        </li></NavLink>
-        <NavLink to='register'><li className="group flex  cursor-pointer flex-col">
+        </li>
+      </NavLink>
+      <NavLink to="/register">
+        <li className="group flex cursor-pointer flex-col">
           Register
           <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-        </li></NavLink>
-      </ul>
+        </li>
+      </NavLink>
+    </>
+  )}
+</ul>
+
       <div
         ref={dropDownMenuRef}
         onClick={() => setDropDownState(!dropDownState)}
@@ -57,6 +80,9 @@ const Navbar = () => {
         </svg>
         {dropDownState && (
           <ul className=" z-10  gap-2  bg-[#393E46]  absolute right-0 top-11 flex w-[200px] flex-col  rounded-lg   text-base ">
+            <li onClick={handleLogout} className="cursor-pointer  px-6 py-2 text-white rounded-t-lg hover:bg-sky-600 ">
+              LogOut
+            </li>
             <li className="cursor-pointer  px-6 py-2 text-white rounded-t-lg hover:bg-sky-600 ">
               Login
             </li>
