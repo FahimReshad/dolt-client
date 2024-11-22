@@ -33,7 +33,7 @@ const Navbar = () => {
           <img
             className="w-36 h-10"
             src="https://i.ibb.co/gSP7qyy/Logo-for-web.gif"
-            alt="logo"
+            alt="logoo"
           />
         </div>
       </Link>
